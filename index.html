@@ -342,6 +342,17 @@
             <p>© 2025 Ali Çelik</p>
         </footer>
     </div>
+    <script>
+        // Disable right-click on all images to discourage downloading
+        document.addEventListener('DOMContentLoaded', function () {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.addEventListener('contextmenu', function (e) {
+                    e.preventDefault();
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
