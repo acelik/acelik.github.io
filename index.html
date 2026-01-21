@@ -356,8 +356,9 @@
                     <div class="links">
                         <a href="https://scholar.google.com/citations?hl=en&user=x31fqlEAAAAJ" target="_blank">Google
                             Scholar</a>
-                        <a href="mailto:alicelik@mehmetakif.edu.tr">Email (University)</a>
-                        <a href="mailto:ali.celik@cern.ch">Email (CERN)</a>
+                        <a href="#" class="protected-email" data-user="alicelik" data-domain="mehmetakif.edu.tr">Email
+                            (University)</a>
+                        <a href="#" class="protected-email" data-user="ali.celik" data-domain="cern.ch">Email (CERN)</a>
                     </div>
                 </div>
             </div>
@@ -382,13 +383,11 @@
             <h2>Research Interests</h2>
             <div class="research-interests">
                 <span class="interest-tag">• High Energy Physics</span>
-                <span class="interest-tag">• Supersymmetry Searches</span>
                 <span class="interest-tag">• Beyond Standard Model Physics</span>
-                <span class="interest-tag">• Machine Learning for Physics</span>
                 <span class="interest-tag">• Deep Learning</span>
-                <span class="interest-tag">• Graph Neural Networks</span>
                 <span class="interest-tag">• Dark Matter Detection</span>
                 <span class="interest-tag">• CMS Experiment</span>
+                <span class="interest-tag">• Detector Physics</span>
             </div>
         </section>
 
@@ -487,8 +486,6 @@
         <section>
             <h2>Contact</h2>
             <div class="contact-section">
-                <div class="contact-item"><strong>Email:</strong> alicelik@mehmetakif.edu.tr</div>
-                <div class="contact-item"><strong>CERN Email:</strong> ali.celik@cern.ch</div>
                 <div class="contact-item"><strong>Address:</strong> Mehmet Akif Ersoy University, Faculty of Natural
                     Sciences and Arts, Department of Physics, 15030 Burdur, Turkey</div>
             </div>
@@ -511,6 +508,22 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // --- Email Protection Logic ---
+            const emailLinks = document.querySelectorAll('.protected-email');
+
+            emailLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const user = this.getAttribute('data-user');
+                    const domain = this.getAttribute('data-domain');
+                    const email = user + '@' + domain;
+
+                    if (confirm(`Send email to ${email}?`)) {
+                        window.location.href = `mailto:${email}`;
+                    }
+                });
+            });
+
             // --- News Archive Logic ---
             const newsItems = document.querySelectorAll('.news-item');
             const allNewsContainer = document.getElementById('all-news-container');
