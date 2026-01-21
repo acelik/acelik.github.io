@@ -235,7 +235,41 @@
             text-align: center;
             color: #ccc;
             padding: 10px 0;
-            height: 150px;
+            height: 50px;
+        }
+
+        /* Lightbox Navigation */
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -50px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .lightbox-content {
+                width: 100%;
+            }
         }
 
         footer {
@@ -387,9 +421,9 @@
                     the implementation of edge deep learning techniques in particle physics experiments. Future
                     collaboration plans and working group activities were outlined during the productive sessions.</p>
                 <div class="photo-gallery">
-                    <img src="Photos/epigraphy-meeting-1.jpg" alt="EPIGRAPHY Kickoff Meeting - Session 1">
-                    <img src="Photos/epigraphy-meeting-2.jpg" alt="EPIGRAPHY Kickoff Meeting - Session 2">
-                    <img src="Photos/epigraphy-meeting-3.jpg" alt="EPIGRAPHY Kickoff Meeting - Session 3">
+                    <img src="Photos/epigraphy-meeting-1.jpg" alt="EPIGRAPHY Kickoff Meeting">
+                    <img src="Photos/epigraphy-meeting-2.jpg" alt="EPIGRAPHY Kickoff Meeting">
+                    <img src="Photos/epigraphy-meeting-3.jpg" alt="EPIGRAPHY Kickoff Meeting">
                 </div>
             </div>
         </section>
@@ -405,62 +439,77 @@
         </section>
 
         <footer>
-            <p>© 2025 Ali Çelik</p>
+            <p>© 2026 Ali Çelik</p>
         </footer>
     </div>
 
     <!-- Lightbox Modal -->
+    <!-- Lightbox Modal -->
     <div id="lightbox" class="lightbox">
         <span class="close">&times;</span>
+        <a class="prev">&#10094;</a>
+        <a class="next">&#10095;</a>
         <img class="lightbox-content" id="lightbox-img">
         <div id="caption"></div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const images = document.querySelectorAll('img');
+            const images = Array.from(document.querySelectorAll('.photo-gallery img')); // Select only gallery images
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             const captionText = document.getElementById('caption');
             const closeBtn = document.getElementsByClassName('close')[0];
+            const prevBtn = document.getElementsByClassName('prev')[0];
+            const nextBtn = document.getElementsByClassName('next')[0];
+            let currentIndex = 0;
 
-            // Right-click protection on ALL images (including lightbox)
+            // Right-click protection on ALL images
             function disableRightClick(element) {
                 element.addEventListener('contextmenu', function (e) {
                     e.preventDefault();
                 });
             }
-
-            images.forEach(img => disableRightClick(img));
+            document.querySelectorAll('img').forEach(img => disableRightClick(img));
             disableRightClick(lightboxImg);
 
-            // Lightbox functionality
-            document.querySelectorAll('.photo-gallery img').forEach(img => {
+            // Open Lightbox
+            images.forEach((img, index) => {
                 img.addEventListener('click', function () {
                     lightbox.style.display = "block";
                     lightboxImg.src = this.src;
                     captionText.innerHTML = this.alt;
+                    currentIndex = index;
                 });
             });
 
-            // Close lightbox
-            closeBtn.onclick = function () {
-                lightbox.style.display = "none";
+            // Navigation Logic
+            function showSlide(index) {
+                if (index >= images.length) { currentIndex = 0; }
+                else if (index < 0) { currentIndex = images.length - 1; }
+                else { currentIndex = index; }
+
+                lightboxImg.src = images[currentIndex].src;
+                captionText.innerHTML = images[currentIndex].alt;
             }
 
-            // Close when clicking outside the image
-            lightbox.onclick = function (e) {
-                if (e.target === lightbox) {
-                    lightbox.style.display = "none";
-                }
-            }
+            prevBtn.onclick = function () { showSlide(currentIndex - 1); }
+            nextBtn.onclick = function () { showSlide(currentIndex + 1); }
 
-            // Close with ESC key
+            // Keyboard Navigation
             document.addEventListener('keydown', function (e) {
-                if (e.key === "Escape") {
-                    lightbox.style.display = "none";
+                if (lightbox.style.display === "block") {
+                    if (e.key === "ArrowLeft") { showSlide(currentIndex - 1); }
+                    if (e.key === "ArrowRight") { showSlide(currentIndex + 1); }
+                    if (e.key === "Escape") { lightbox.style.display = "none"; }
                 }
             });
+
+            // Close Logic
+            closeBtn.onclick = function () { lightbox.style.display = "none"; }
+            lightbox.onclick = function (e) {
+                if (e.target === lightbox) { lightbox.style.display = "none"; }
+            }
         });
     </script>
 </body>
