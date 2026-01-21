@@ -168,8 +168,8 @@
             cursor: pointer;
         }
 
-        /* Compact Gallery: Show only first 4 images */
-        .photo-gallery img:nth-child(n+5) {
+        /* Compact Gallery: Show only first 3 images */
+        .photo-gallery img:nth-child(n+4) {
             display: none;
         }
 
@@ -593,13 +593,15 @@
             }
 
             // --- Lightbox & Gallery Logic ---
-            const images = Array.from(document.querySelectorAll('.photo-gallery img'));
+            // Remove the global 'images' array since we want scoped navigation
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             const captionText = document.getElementById('caption');
             const closeBtn = document.getElementsByClassName('close')[0];
             const prevBtn = document.getElementsByClassName('prev')[0];
             const nextBtn = document.getElementsByClassName('next')[0];
+
+            let currentGalleryImages = []; // Local array for the currently active gallery
             let currentIndex = 0;
 
             // Right-click protection on ALL images
@@ -611,24 +613,34 @@
             document.querySelectorAll('img').forEach(img => disableRightClick(img));
             disableRightClick(lightboxImg);
 
-            // Open Lightbox
-            images.forEach((img, index) => {
+            // Open Lightbox with scoped images
+            document.querySelectorAll('.photo-gallery img').forEach(img => {
                 img.addEventListener('click', function () {
+                    // 1. Identify which gallery this image belongs to
+                    const parentGallery = this.closest('.photo-gallery');
+
+                    // 2. Get all images ONLY within that specific gallery
+                    currentGalleryImages = Array.from(parentGallery.querySelectorAll('img'));
+
+                    // 3. Find the index of the clicked image within that specific gallery
+                    currentIndex = currentGalleryImages.indexOf(this);
+
+                    // 4. Open Lightbox
                     lightbox.style.display = "block";
                     lightboxImg.src = this.src;
                     captionText.innerHTML = this.alt;
-                    currentIndex = index;
                 });
             });
 
-            // Navigation Logic
+            // Navigation Logic (uses currentGalleryImages)
             function showSlide(index) {
-                if (index >= images.length) { currentIndex = 0; }
-                else if (index < 0) { currentIndex = images.length - 1; }
+                // Determine bounds based on the CURRENT gallery's length
+                if (index >= currentGalleryImages.length) { currentIndex = 0; }
+                else if (index < 0) { currentIndex = currentGalleryImages.length - 1; }
                 else { currentIndex = index; }
 
-                lightboxImg.src = images[currentIndex].src;
-                captionText.innerHTML = images[currentIndex].alt;
+                lightboxImg.src = currentGalleryImages[currentIndex].src;
+                captionText.innerHTML = currentGalleryImages[currentIndex].alt;
             }
 
             prevBtn.onclick = function () { showSlide(currentIndex - 1); }
