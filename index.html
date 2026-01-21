@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ali Çelik</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #ffffff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        header {
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .links a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .links a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #444;
+        }
+
+        .publication-list {
+            list-style: none;
+        }
+
+        .publication-list li {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .publication-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .pub-authors {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .pub-venue {
+            color: #777;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .research-interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .interest-tag {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .contact-section {
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        .contact-item strong {
+            color: #333;
+            font-weight: 600;
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Ali Çelik</h1>
+            <p class="subtitle">Associate Professor, Department of Physics<br>Mehmet Akif Ersoy University, Turkey</p>
+            
+            <div class="links">
+                <a href="https://scholar.google.com/citations?hl=en&user=x31fqlEAAAAJ" target="_blank">Google Scholar</a>
+                <a href="mailto:alicelik@mehmetakif.edu.tr">Email (University)</a>
+                <a href="mailto:ali.celik@cern.ch">Email (CERN)</a>
+            </div>
+        </header>
+
+        <section>
+            <h2>About</h2>
+            <p>I am an Associate Professor in the Physics Department at Mehmet Akif Ersoy University in Burdur, Turkey. My research focuses on the intersection of high energy physics and machine learning, with particular emphasis on searches for physics beyond the Standard Model.</p>
+            
+            <p>I received my Ph.D. in Experimental High Energy Physics from Texas A&M University in 2018, where I worked on supersymmetry searches and detector development for the CMS experiment at CERN. During my doctoral studies, I was awarded a Fermilab Graduate Scholarship (2016-2017).</p>
+
+            <p>Currently, my work combines traditional particle physics with cutting-edge machine learning techniques, including deep neural networks, graph neural networks, and transformer architectures for BSM physics discovery.</p>
+        </section>
+
+        <section>
+            <h2>Research Interests</h2>
+            <div class="research-interests">
+                <span class="interest-tag">• High Energy Physics</span>
+                <span class="interest-tag">• Supersymmetry Searches</span>
+                <span class="interest-tag">• Beyond Standard Model Physics</span>
+                <span class="interest-tag">• Machine Learning for Physics</span>
+                <span class="interest-tag">• Deep Learning</span>
+                <span class="interest-tag">• Graph Neural Networks</span>
+                <span class="interest-tag">• Dark Matter Detection</span>
+                <span class="interest-tag">• CMS Experiment</span>
+            </div>
+        </section>
+
+        <section>
+            <h2>Selected Publications</h2>
+            <ul class="publication-list">
+                <li>
+                    <strong>TabNet for Jet Flavor Tagging: A Machine Learning Approach</strong><br>
+                    <span class="pub-authors">A. Çelik</span><br>
+                    <span class="pub-venue">Bilecik Şeyh Edebali Universitesi Fen Bilimleri Dergisi, 12(2), 589-599 (2025)</span>
+                </li>
+
+                <li>
+                    <strong>Beyond the background: deep learning models for BSM signal discovery</strong><br>
+                    <span class="pub-authors">A. Celik, A. Aybar</span><br>
+                    <span class="pub-venue">Journal of the Korean Physical Society (2025)</span>
+                </li>
+
+                <li>
+                    <strong>Transforming Tabular Data into Graphs for GNN-Driven Classification of BSM and Standard Model Events in High-Energy Collisions</strong><br>
+                    <span class="pub-authors">O. T. Biskin, A. Celik</span><br>
+                    <span class="pub-venue">Nuclear Physics B, 1018, 117064 (2025)</span>
+                </li>
+
+                <li>
+                    <strong>Deep Learning Approaches for BSM Physics: Evaluating DNN and GNN Performance in Particle Collision Event Classification</strong><br>
+                    <span class="pub-authors">A. Celik</span><br>
+                    <span class="pub-venue">Acta Physica Polonica B, 55, A2-1 (2024)</span>
+                </li>
+
+                <li>
+                    <strong>Exploring hidden signal: Fine-tuning ResNet-50 for dark matter detection</strong><br>
+                    <span class="pub-authors">A. Celik</span><br>
+                    <span class="pub-venue">Computer Physics Communications, 109348 (2024)</span>
+                </li>
+
+                <li>
+                    <strong>A fast and time-efficient machine learning approach to dark matter searches in compressed mass scenario</strong><br>
+                    <span class="pub-authors">A. Celik</span><br>
+                    <span class="pub-venue">The European Physical Journal C, 83(12), 1150 (2023)</span>
+                </li>
+
+                <li>
+                    <strong>Search for supersymmetry with a compressed mass spectrum in the vector boson fusion topology</strong><br>
+                    <span class="pub-authors">CMS Collaboration</span><br>
+                    <span class="pub-venue">JHEP 08 (2019) 150</span>
+                </li>
+
+                <li>
+                    <strong>Search for supersymmetry in the vector-boson fusion topology in proton-proton collisions at √s = 8 TeV</strong><br>
+                    <span class="pub-authors">CMS Collaboration</span><br>
+                    <span class="pub-venue">JHEP 11 (2015) 189</span>
+                </li>
+            </ul>
+            <p><a href="https://scholar.google.com/citations?hl=en&user=x31fqlEAAAAJ" target="_blank">Full publication list →</a></p>
+        </section>
+
+        <section>
+            <h2>Current Projects</h2>
+            <p><strong>COST Project CA24153:</strong> Edge Deep Learning for Particle Physics (EPIGRAPHY)</p>
+            <p><strong>COST Project CA22130:</strong> Comprehensive Multiboson Experiment-Theory Action</p>
+            <p><strong>COST Project CA21106:</strong> COSMIC WISPers in the Dark Universe: Theory, astrophysics and experiments</p>
+        </section>
+
+        <section>
+            <h2>Contact</h2>
+            <div class="contact-section">
+                <div class="contact-item"><strong>Email:</strong> alicelik@mehmetakif.edu.tr</div>
+                <div class="contact-item"><strong>CERN Email:</strong> ali.celik@cern.ch</div>
+                <div class="contact-item"><strong>Address:</strong> Mehmet Akif Ersoy University, Faculty of Natural Sciences and Arts, Department of Physics, 15030 Burdur, Turkey</div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2025 Ali Çelik</p>
+        </footer>
+    </div>
+</body>
+</html>
