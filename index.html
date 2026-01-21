@@ -238,6 +238,30 @@
             height: 50px;
         }
 
+        /* All News Link */
+        .all-news-container {
+            text-align: center;
+            margin-top: 2rem;
+            display: none;
+            /* Hidden by default, shown by JS if needed */
+        }
+
+        .all-news-link {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            border: 1px solid #3498db;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .all-news-link:hover {
+            background-color: #3498db;
+            color: white;
+        }
+
         /* Lightbox Navigation */
         .prev,
         .next {
@@ -421,10 +445,15 @@
                     the implementation of edge deep learning techniques in particle physics experiments. Future
                     collaboration plans and working group activities were outlined during the productive sessions.</p>
                 <div class="photo-gallery">
+                    <img src="Photos/epigraphy-group-photo.jpg" alt="EPIGRAPHY Kickoff Meeting - Group Photo">
                     <img src="Photos/epigraphy-meeting-1.jpg" alt="EPIGRAPHY Kickoff Meeting">
                     <img src="Photos/epigraphy-meeting-2.jpg" alt="EPIGRAPHY Kickoff Meeting">
                     <img src="Photos/epigraphy-meeting-3.jpg" alt="EPIGRAPHY Kickoff Meeting">
                 </div>
+            </div>
+
+            <div class="all-news-container" id="all-news-container">
+                <a class="all-news-link" id="all-news-link">All News →</a>
             </div>
         </section>
 
@@ -455,7 +484,37 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const images = Array.from(document.querySelectorAll('.photo-gallery img')); // Select only gallery images
+            // --- News Archive Logic ---
+            const newsItems = document.querySelectorAll('.news-item');
+            const allNewsContainer = document.getElementById('all-news-container');
+            const allNewsLink = document.getElementById('all-news-link');
+            const NEWS_LIMIT = 3;
+
+            if (newsItems.length > NEWS_LIMIT) {
+                // Hide older news
+                for (let i = NEWS_LIMIT; i < newsItems.length; i++) {
+                    newsItems[i].style.display = 'none';
+                }
+                allNewsContainer.style.display = 'block';
+
+                // Toggle logic
+                allNewsLink.onclick = function () {
+                    if (allNewsLink.innerHTML.includes('All News')) {
+                        // Show all
+                        newsItems.forEach(item => item.style.display = 'block');
+                        allNewsLink.innerHTML = 'Show Less ↑';
+                    } else {
+                        // Hide older
+                        for (let i = NEWS_LIMIT; i < newsItems.length; i++) {
+                            newsItems[i].style.display = 'none';
+                        }
+                        allNewsLink.innerHTML = 'All News →';
+                    }
+                };
+            }
+
+            // --- Lightbox & Gallery Logic ---
+            const images = Array.from(document.querySelectorAll('.photo-gallery img'));
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             const captionText = document.getElementById('caption');
