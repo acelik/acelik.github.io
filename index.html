@@ -36,6 +36,21 @@
             margin-bottom: 1rem;
         }
 
+        /* Profile Header */
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
         .subtitle {
             font-size: 1.1rem;
             color: #666;
@@ -310,11 +325,17 @@
                 padding: 2rem 1.5rem;
             }
 
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
             h1 {
                 font-size: 2rem;
             }
 
             .links {
+                justify-content: center;
                 flex-direction: column;
                 gap: 0.5rem;
             }
@@ -325,14 +346,20 @@
 <body>
     <div class="container">
         <header>
-            <h1>Ali Çelik</h1>
-            <p class="subtitle">Associate Professor, Department of Physics<br>Mehmet Akif Ersoy University, Turkey</p>
+            <div class="header-content">
+                <img src="Photos/profile_pic.jpeg" alt="Ali Çelik" class="profile-pic">
+                <div class="header-text">
+                    <h1>Ali Çelik</h1>
+                    <p class="subtitle">Associate Professor, Department of Physics<br>Mehmet Akif Ersoy University,
+                        Turkey</p>
 
-            <div class="links">
-                <a href="https://scholar.google.com/citations?hl=en&user=x31fqlEAAAAJ" target="_blank">Google
-                    Scholar</a>
-                <a href="mailto:alicelik@mehmetakif.edu.tr">Email (University)</a>
-                <a href="mailto:ali.celik@cern.ch">Email (CERN)</a>
+                    <div class="links">
+                        <a href="https://scholar.google.com/citations?hl=en&user=x31fqlEAAAAJ" target="_blank">Google
+                            Scholar</a>
+                        <a href="mailto:alicelik@mehmetakif.edu.tr">Email (University)</a>
+                        <a href="mailto:ali.celik@cern.ch">Email (CERN)</a>
+                    </div>
+                </div>
             </div>
         </header>
 
